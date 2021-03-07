@@ -11,11 +11,11 @@
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=${fileDirname}",
-                    "--package=${fileDirname}"
+                    "--bin=sol3-1",
+                    "--package=sol3-1"
                 ],
                 "filter": {
-                    "name": "${fileDirname}",
+                    "name": "sol3-1",
                     "kind": "bin"
                 }
             },
