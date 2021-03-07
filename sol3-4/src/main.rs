@@ -1,26 +1,23 @@
 fn main() {
     let x = vec![100, 10, 20, 30, 40, 30, 1];
-    let res = 10;
+    let res = 99;
 
     println!("FINAL: {} / ANS: {}", search(x), res);
 }
 
 fn search(target_vec: Vec<i32>) -> i32 {
-    // 2番目に小さな値を求める。
-    let max = i32::MAX;
-    let mut least = max;
-    let mut second_least = max;
+    // 最大/最小値を求める。
+    let mut max = -1;
+    let mut min = i32::MAX;
+
     for i in target_vec.iter() {
-        if i < &least {
-            second_least = least;
-            least = *i;
-        } else if i < &second_least {
-            second_least = *i;
+        if i < &min {
+            min = *i;
         }
-        println!(
-            "least: {} \n second_least: {}\n==========",
-            least, second_least
-        );
+        if &max < i {
+            max = *i
+        }
+        println!("MAX: {} \n MIN: {}\n==========", max, min);
     }
-    second_least
+    max - min
 }
