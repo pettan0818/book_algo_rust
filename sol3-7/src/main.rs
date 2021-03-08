@@ -3,17 +3,17 @@ use proconio::input;
 
 fn main() {
     input! {
-        S: String,
+        s: String,
     }
-    println!("{}", search(S));
+    println!("{}", search(s));
 }
 
-fn search(S: String) -> u64 {
+fn search(s: String) -> u64 {
     let mut res = 0;
-    for cnt in 0..1 << (S.len() - 1) {
+    for cnt in 0..1 << (s.len() - 1) {
         // 2進数表現で、+を入れる入れないを管理する
         // 2進数表現に変換
-        let bin = format!("{:0>width$b}", cnt, width = S.len() - 1);
+        let bin = format!("{:0>width$b}", cnt, width = s.len() - 1);
         // Forループで扱えるようにVectorに変換
         let bin_vec: Vec<u64> = bin
             .chars() // String->Iter(char)
@@ -21,7 +21,7 @@ fn search(S: String) -> u64 {
             .collect();
 
         // 処理対象文字列をVectorに変換
-        let mut target_vec: Vec<u64> = S
+        let mut target_vec: Vec<u64> = s
             .chars()
             .map(|x| From::from(x.to_digit(10).unwrap())) // to_digitでChar->u32
             .collect();
