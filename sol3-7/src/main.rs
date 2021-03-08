@@ -16,14 +16,14 @@ fn search(S: String) -> u64 {
         let bin = format!("{:0>width$b}", cnt, width = S.len() - 1);
         // Forループで扱えるようにVectorに変換
         let bin_vec: Vec<u64> = bin
-            .chars()
-            .map(|x| From::from(x.to_digit(10).unwrap())) // u64にぶち込む際にアップキャスト
+            .chars() // String->Iter(char)
+            .map(|x| From::from(x.to_digit(10).unwrap())) // u64にぶち込む際にアップキャスト<From::from>
             .collect();
 
         // 処理対象文字列をVectorに変換
         let mut target_vec: Vec<u64> = S
             .chars()
-            .map(|x| From::from(x.to_digit(10).unwrap()))
+            .map(|x| From::from(x.to_digit(10).unwrap())) // to_digitでChar->u32
             .collect();
         // 処理対象文字列の0文字目だけ取り出す
         let mut term = target_vec[0];
@@ -38,11 +38,11 @@ fn search(S: String) -> u64 {
             if flag == 1 {
                 // println!("{}+", term);
                 res = res + term;
-                term = now_num;
+                term = now_num; // 処理中の数字を次の項にしてあげる必要がある。
             }
         }
         // println!("{}", term);
-        res = res + term;
+        res = res + term; //最期まで残った項を出力結果に加算
     }
     res
 }
