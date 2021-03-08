@@ -1,25 +1,34 @@
 fn main() {
-    let n: i64 = 49;
-    let mut memo = vec![-1; (n + 1) as usize];
-    let res = fibo(n, &mut memo);
+    let n: i64 = 4;
+    let v: Vec<i64> = vec![1, 2, 3, 4];
+    let w: i64 = 11;
 
-    println!("Term {}: {}", n, res);
+    if explorer(n, &v, w) {
+        println!("TRUE");
+    } else {
+        println!("FALSE");
+    }
 }
 
-fn fibo(n: i64, memo: &mut Vec<i64>) -> i64 {
+fn explorer(lasting_count: i64, target_vector: &Vec<i64>, target_result: i64) -> bool {
     // Report Call Another explorer.
-    println!("Called fibo({})", n);
-    if n == 0 {
-        return 0;
+    if lasting_count == 0 {
+        if target_result == 0 {
+            return true;
+        }
+        return false;
     }
-    if n == 1 {
-        return 1;
+    // Select target_vector[lasting_count - 1]
+    if explorer(
+        lasting_count - 1,
+        &target_vector,
+        target_result - target_vector[(lasting_count - 1) as usize],
+    ) {
+        return true;
     }
-    if memo[n as usize] != -1 {
-        return memo[n as usize];
+    // NOT Select target_vector[lasting_count - 1]
+    if explorer(lasting_count - 1, &target_vector, target_result) {
+        return true;
     }
-    let res = fibo(n - 1, memo) + fibo(n - 2, memo);
-    //println!("No.{}: {}", n, res);
-    memo[n as usize] = res;
-    res
+    return false;
 }
