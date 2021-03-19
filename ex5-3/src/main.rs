@@ -2,13 +2,13 @@ use proconio::input;
 use std::cmp::min;
 
 fn main() {
-    // input! {
-    //     n: usize,
-    //     step_cost: [i32; n]
-    // }
+    input! {
+        n: usize,
+        step_cost: [i32; n]
+    }
 
-    let n = 6;
-    let step_cost = vec![30, 10, 60, 10, 60, 50];
+    // let n = 6;
+    // let step_cost = vec![30, 10, 60, 10, 60, 50];
 
     let mut cost_result = vec![0];
     cost_result.extend(vec![99999; n - 1]);

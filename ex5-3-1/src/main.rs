@@ -2,15 +2,15 @@ use proconio::input;
 use std::cmp::min;
 
 fn main() {
-    // input! {
-    //     n: usize,
-    //     k: usize,
-    //     step_cost: [i32; n]
-    // }
+    input! {
+        n: usize,
+        k: usize,
+        step_cost: [i32; n]
+    }
 
-    let n = 10;
-    let k = 4;
-    let step_cost = vec![40, 10, 20, 70, 80, 10, 20, 70, 80, 60];
+    // let n = 10;
+    // let k = 4;
+    // let step_cost = vec![40, 10, 20, 70, 80, 10, 20, 70, 80, 60];
 
     let mut cost_result = vec![0];
     cost_result.extend(vec![std::i32::MAX; n - 1]);
